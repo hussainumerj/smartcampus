@@ -4,10 +4,8 @@
  */
 package com.mycompany.smartcampus.exception;
 
-/**
- *
- * @author hussainumerji
- */
-public class RoomNotEmptyException {
-    
+public class RoomNotEmptyException extends RuntimeException {
+    public RoomNotEmptyException(String msg) {
+        super(msg);
+    }
 }
