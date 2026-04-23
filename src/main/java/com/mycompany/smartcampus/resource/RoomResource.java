@@ -13,6 +13,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.Collection;
 import java.util.UUID;
+import java.util.ArrayList;
 
 @Path("/rooms")
 @Produces(MediaType.APPLICATION_JSON)
@@ -32,7 +33,7 @@ public class RoomResource {
             room.setId(UUID.randomUUID().toString());
         }
         if (room.getSensorIds() == null) {
-            room.setSensorIds(new java.util.ArrayList<>());
+            room.setSensorIds(new ArrayList<>());
         }
         DataStore.rooms.put(room.getId(), room);
         return Response.status(201).entity(room).build();
