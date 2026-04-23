@@ -1,11 +1,11 @@
 # SmartCampus REST API (5COSC022W Coursework)
 
 This project is a RESTful API for a “Smart Campus” system. It manages:
-- **Rooms** (campus spaces)
-- **Sensors** (devices installed in rooms)
-- **Sensor Readings** (historical readings per sensor)
+- Rooms (campus spaces)
+- Sensors (devices installed in rooms)
+- Sensor Readings (historical readings per sensor)
 
-The API is built using **JAX-RS** (Jersey) with an embedded HTTP server, and stores data **in-memory** using Java collections (no database).
+The API is built using JAX-RS (Jersey) with an embedded HTTP server, and stores data **in-memory** using Java collections (no database).
 
 > Base path: `/api/v1`  
 > Example base URL (NetBeans output): `http://localhost:8081/api/v1/`
@@ -32,28 +32,11 @@ The API is built using **JAX-RS** (Jersey) with an embedded HTTP server, and sto
   - `POST /api/v1/sensors/{sensorId}/readings` add reading  
     - also updates the parent sensor’s `currentValue`
 
-### Error handling & observability (Part 5)
+### Error handling & observability
 The API uses Exception Mappers and Filters to ensure it never returns raw stack traces and logs requests/responses.  
 Required scenarios include:
-- **409 Conflict** when deleting a room that still has sensors
-- **422 Unprocessable Entity** (or 400) when creating a sensor with a non-existent `roomId`
-- **403 Forbidden** if readings are posted while sensor status is `MAINTENANCE`
-- **500** catch-all mapper
+- 409 Conflict when deleting a room that still has sensors
+- 422 Unprocessable Entity(or 400) when creating a sensor with a non-existent `roomId`
+- 403 Forbidden if readings are posted while sensor status is `MAINTENANCE`
+- 500 catch-all mapper
 - request/response logging filter (method + URI, and response status)
-
----
-
-## Build & Run (step-by-step)
-
-### Option A — Run in NetBeans (recommended)
-1. Open the project in **Apache NetBeans**.
-2. Click **Run Project**.
-3. In the Output window, wait for a line similar to:
-   - `Server running at http://0.0.0.0:8081/api/v1/`
-4. Keep the project running while testing with curl/Postman.
-
-### Option B — Run using Maven (terminal)
-From the project root:
-1. Build:
-   ```bash
-   mvn clean package
