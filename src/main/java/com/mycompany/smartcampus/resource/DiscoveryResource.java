@@ -18,7 +18,7 @@ public class DiscoveryResource {
     public Map<String, Object> discovery() {
         return Map.of(
                 "version", "v1",
-                "adminContact", "your.email@westminster.ac.uk",
+                "adminContact", "w1975276@westminster.ac.uk",
                 "resources", Map.of(
                         "rooms", "/api/v1/rooms",
                         "sensors", "/api/v1/sensors"
